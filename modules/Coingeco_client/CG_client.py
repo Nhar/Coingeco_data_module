@@ -1,4 +1,6 @@
-from CG_exceptions import *
+from requests import Request, Session
+import requests
+import json
 
 class Client(object):
     REST_API_URL = 'https://api.coingecko.com/api/v3/'
@@ -75,6 +77,7 @@ class Client(object):
         return self._get('exchanges/{}'.format(id))
 
 if __name__ == '__main__':
+    from CG_exceptions import APIException
     client = Client()
     #Get first 250 rows
     data = client.get_coins_markets('usd', '1h,24h,7d,14d,30d,200d,1y ', per_page = 250, page = 1)
